@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: app-nodejs
-        image: welignton/app-nodejs:540b31d
+        image: welignton/app-nodejs:8bd1e9b
         ports:
         - containerPort: 3000
         livenessProbe:
