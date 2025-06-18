@@ -4,7 +4,7 @@ metadata:
   name: app-nodejs
   labels:
     app: app-nodejs
-    monitoring: enabled
+    monitoring: "enabled"
   annotations:
     prometheus.io/scrape: "true"
     prometheus.io/path: "/metrics"
@@ -14,8 +14,7 @@ spec:
   selector:
     app: app-nodejs
   ports:
-  - port: 3000
-    targetPort: 3000
-    protocol: TCP
-    name: metrics
-
+    - name: http
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
