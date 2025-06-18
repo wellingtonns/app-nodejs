@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-nodejs
+  namespace: app-nodejs
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prd"
+    external-dns.alpha.kubernetes.io/hostname: app-nodejs.wnstech.com.br
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: app-nodejs.wnstech.com.br
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app-nodejs
+                port:
+                  number: 3000
+  tls:
+    - hosts:
+        - app-nodejs.wnstech.com.br
+      secretName: app-nodejs-cert-tls
