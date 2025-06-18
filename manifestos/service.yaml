@@ -4,17 +4,13 @@ metadata:
   name: app-nodejs
   labels:
     app: app-nodejs
-    monitoring: "enabled"
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/path: "/metrics"
-    prometheus.io/port: "3000"
+    monitoring: enabled
 spec:
   type: ClusterIP
   selector:
     app: app-nodejs
   ports:
-  - port: 3000
+  - name: metrics 
+    port: 3000
     targetPort: 3000
     protocol: TCP
-    name: http
